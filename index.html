@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Message</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0d061a, #1f1138, #2e1b4f);
+            position: relative;
+            animation: backgroundShift 20s infinite alternate;
+        }
+
+        #stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+            animation: twinkle 4s infinite alternate;
+        }
+
+        .particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 105, 180, 0.5);
+            border-radius: 50%;
+            animation: drift 10s infinite linear;
+        }
+
+        .nebula {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 102, 0.15), rgba(138, 43, 226, 0.1), transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: nebulaGlow 12s infinite alternate;
+        }
+
+        .main-text {
+            font-size: 5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 25px rgba(255, 105, 180, 0.9), 0 0 50px rgba(138, 43, 226, 0.6);
+            animation: floatText 3.5s infinite ease-in-out;
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #ff0066, #8a2be2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .highlight {
+            font-size: 6rem;
+            vertical-align: middle;
+            color: #ff0000;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 0, 0, 0.7);
+            animation: pulseHeart 1.2s infinite ease-in-out;
+        }
+
+        .sub-text {
+            font-size: 2rem;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            animation: fadeIn 2.5s ease-in forwards;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #ff69b4, #8a2be2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .social-links {
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 40px;
+            animation: slideUp 1.8s ease forwards 0.8s;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.8rem;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(45deg, #ff0066, #8a2be2);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 0, 102, 0.6);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+            border-color: transparent;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translate(50px, -50px); opacity: 0; }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes nebulaGlow {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .main-text { font-size: 3.5rem; }
+            .highlight { font-size: 4rem; }
+            .sub-text { font-size: 1.4rem; }
+            .social-links a { font-size: 1.3rem; padding: 10px 20px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="stars">
+        <div class="nebula"></div>
+    </div>
+
+    <div class="main-text">
+        Простите что пропал<span class="highlight">❤️</span>
+    </div>
+
+    <div class="sub-text">
+        P.S - Спасибо что остались со мной!
+    </div>
+
+    <div class="social-links">
+        <a href="https://tiktok.com/@hushuyaaa" target="_blank">TikTok: hushuyaaa</a>
+        <a href="https://t.me/heartedtiktok" target="_blank">TG: heartedtiktok</a>
+    </div>
+
+    <script>
+        const starsContainer = document.getElementById("stars");
+        const starCount = 400;
+        const particleCount = 50;
+
+        function createElement(className, x, y, size, duration, delay) {
+            const el = document.createElement("div");
+            el.className = className;
+            el.style.left = x + "px";
+            el.style.top = y + "px";
+            el.style.width = size + "px";
+            el.style.height = size + "px";
+            el.style.animationDuration = duration + "s";
+            el.style.animationDelay = delay + "s";
+            starsContainer.appendChild(el);
+        }
+
+        for (let i = 0; i < starCount; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const size = Math.random() * 2 + 1;
+            const duration = Math.random() * 4 + 1;
+            const delay = Math.random() * 2;
+            createElement("star", x, y, size, duration, delay);
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const duration = Math.random() * 8 + 4;
+            const delay = Math.random() * 5;
+            createElement("particle", x, y, 1, duration, delay);
+        }
+    </script>
+</body>
+</html>
